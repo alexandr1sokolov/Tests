@@ -17,7 +17,6 @@ import selectedTest from './selectedTestReducer';
 import resultIsActive from './resultPageReducer';
 import modules from './modulesReducer';
 import messageText from './messageTextReducers';
-import locationPathname from './locationPathnameReducer'
 
 
  export default () => combineReducers({
@@ -37,6 +36,5 @@ import locationPathname from './locationPathnameReducer'
     isLogin,
     showAgreement,
     resultIsActive,
-    messageText,
-    locationPathname
+    messageText
 });

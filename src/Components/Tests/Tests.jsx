@@ -9,13 +9,8 @@ import {NavLink} from "react-router-dom";
 const Tests = ({modules, tests, loadSelectedTest, match}) => {
 
     const selectTest = function(e) {
-        console.log("select test");
-        // find individual test in store using module name and test name:
-        const st = tests.find(el => el._id === e.target.dataset.testid);
-        // const sm = modules.find(el => el._id === e.target.dataset.moduleid);
-        // add module name in the selectedTest:
-        const selectedTestObj = Object.keys(st).length ? {...st} : {};
-        // console.log('selectedTestObj', selectedTestObj);
+        const selectedTest = tests.find(el => el._id === e.target.dataset.testid);
+        const selectedTestObj = Object.keys(selectedTest).length ? {...selectedTest} : {};
         loadSelectedTest(selectedTestObj);
     };
 
@@ -25,8 +20,6 @@ const Tests = ({modules, tests, loadSelectedTest, match}) => {
 
     if (tests.length && modules.length) {
         const modulesSorted = modules.sort((a, b) => (a.modulename > b.modulename) ? 1 : -1);
-        // console.log(modulesSorted);
-        // console.log(match);
         return (
                     <div className={styles.main__wrapper}>
                         <div className={styles.main__container}>

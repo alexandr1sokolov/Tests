@@ -1,14 +1,15 @@
 import React from 'react';
+import {connect} from 'react-redux';
+
 import PropTypes from 'prop-types';
 import styles from './PersonalResults.css';
 import PersonalCard from './PersonalCard/PersonalCard';
-// import {getDataAsync} from '../../redux/actions/actionDataResults';
-import {connect} from 'react-redux';
 import Modal from '../ModalChild/ModalChild'
-import {totalResults, percentResults} from '../../redux/selectors/totalResults';
 import sad from './PersonalCard/images/sad.svg';
 import weird from './PersonalCard/images/weird.svg';
 import smile from './PersonalCard/images/smile.svg';
+
+import {totalResults, percentResults} from '../../redux/selectors/totalResults';
 import {resultIsInactive} from '../../redux/actions/resultPageActions';
 
 const PersonalResults=({dataResult, total, percent, closeModalFunc})=> {
@@ -37,16 +38,27 @@ const PersonalResults=({dataResult, total, percent, closeModalFunc})=> {
                             <th className={styles.robotoOrange}>Средний : {total}</th>
                             <th className={styles.robotoOrange}>
                             {percent <= 50 ? 
-                                <div className={styles.flex}><span className={styles.red}>{percent}% </span><img src={sad} alt="sad" className={styles.svg}/></div>: 
-                            percent > 50 && percent <= 70 ?    
-                               <div className={styles.flex}> <span className={styles.yellow}>{percent}% </span><img src={weird} alt="weird" className={styles.svg}/></div>:
-                            percent >= 80 ?
-                                 <div className={styles.flex}><span className={styles.green}>{percent}% </span><img src={smile} alt="smile" className={styles.svg}/></div>:
-                            percent }
+                                            <div className={styles.flex}>
+                                              <span className={styles.red}>{percent}% </span>
+                                              <img src={sad} alt="sad" className={styles.svg}/>
+                                            </div>
+                                           :
+                                            percent > 50 && percent <= 70 ?
+                                                                           <div className={styles.flex}>
+                                                                             <span className={styles.yellow}>{percent}% </span>
+                                                                             <img src={weird} alt="weird" className={styles.svg}/>
+                                                                           </div>
+                                                                           :
+                                                                           percent >= 80 ?
+                                                                                         <div className={styles.flex}>
+                                                                                             <span className={styles.green}>{percent}% </span>
+                                                                                             <img src={smile} alt="smile" className={styles.svg}/>
+                                                                                         </div>
+                                                                                          :
+                                                                                          percent }
                             </th>
                         </tr>
-                        </tbody>    
-                        
+                        </tbody>
                 </table>
             <style>@import url('https://fonts.googleapis.com/css?family=Roboto:300');</style>
             </div>

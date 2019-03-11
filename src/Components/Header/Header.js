@@ -21,29 +21,32 @@ const Header = (props) => {
 
     return (
         <div>
-            {props.checkLogin ?
-                <div className={styles.header__container}>
-                <div className={styles['header__main-nav-link']} onClick={props.resultIsInactiveFunc}>
-                    <img src={logo} alt="logo" className={styles['header__logo']}/>
-                </div>
-                <ul className={styles['header__menu-nav-links']}>
-                    <li className={styles.header__item}>
-                        <div className={styles['header__item-nav']} onClick={props.resultIsActiveFunc}>Результаты</div>
-                    </li>
-                    <li className={styles.header__item}>
-                        <NavLink to="/" className={styles['header__item-nav']} onClick={logOut}>Выйти</NavLink>
-                    </li>
-                </ul>
-                </div>
-
-                :
-                <div className={styles.header__container}>
-                <span className={styles.test}>Tests</span>
-                <div className={styles['header__menu-buttons']}>
-                    <button className={styles.header__button} onClick={props.showRegistration}>Регистрация</button>
-                    <button className={styles['header__button']+' '+styles['header__margine-right']} onClick={props.showEnter}>Вход</button>
-                </div>
-                </div>
+            {props.checkLogin
+              ?
+              <div className={styles.header__container}>
+                  <div className={styles['header__main-nav-link']} onClick={props.resultIsInactiveFunc}>
+                      <img src={logo} alt="logo" className={styles['header__logo']}/>
+                  </div>
+                  <ul className={styles['header__menu-nav-links']}>
+                      <li className={styles.header__item}>
+                          <div className={styles['header__item-nav']} onClick={props.resultIsActiveFunc}>Результаты
+                          </div>
+                      </li>
+                      <li className={styles.header__item}>
+                          <NavLink to="/" className={styles['header__item-nav']} onClick={logOut}>Выйти</NavLink>
+                      </li>
+                  </ul>
+              </div>
+              :
+              <div className={styles.header__container}>
+                  <span className={styles.test}>Tests</span>
+                  <div className={styles['header__menu-buttons']}>
+                      <button className={styles.header__button} onClick={props.showRegistration}>Регистрация</button>
+                      <button className={styles['header__button'] + ' ' + styles['header__margine-right']}
+                              onClick={props.showEnter}>Вход
+                      </button>
+                  </div>
+              </div>
             }
         </div>
     )
@@ -63,27 +66,21 @@ function MDTP(dispatch) {
         logoutHandler: function() {
             dispatch(isLogout());
         },
-
         showEnter: function() {
             dispatch(showEnter())
         },
-      
         showRegistration: function() {
             dispatch(showRegistration())
         },
-
         resultIsActiveFunc : function() {
             dispatch(resultIsActive())
         },
-
         resultIsInactiveFunc : function() {
             dispatch(resultIsInactive());
         },
-
         unSelectedTestFunc : function() {
             dispatch(unSelectedTest());
         },
-
         clearDataResultFunc : function() {
             dispatch(clearDataResult());
         },

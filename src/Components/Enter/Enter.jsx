@@ -3,20 +3,21 @@ import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import axios from "axios/index";
 import Modal from '../ModalChild/ModalChild';
-// import MessageBox from '../MessageBox/MessageBox';
+
 import styles from './Enter.css';
 import email from './mail.svg';
 import lock from './locked.svg';
+
 import {emailChangeHandler} from '../../redux/actions/emailChangeAction';
 import {passChangeHandler} from '../../redux/actions/passChangeAction';
 import {isLogin} from '../../redux/actions/isLogin';
 import {closeModal} from '../../redux/actions/enterAction';
 import {emailChangeClear} from '../../redux/actions/emailChangeAction';
 import {passChangeClear} from '../../redux/actions/passChangeAction';
-import {getUserAuthHeader, getUserId} from "../../helpers/userValidation";
 import {dataResult} from '../../redux/actions/actionDataResults';
 import {clearMessageText, setMessageText} from '../../redux/actions/messageTextActions';
 
+import {getUserAuthHeader, getUserId} from "../../helpers/userValidation";
 
 const Enter = (props) => {
 
@@ -61,26 +62,34 @@ const Enter = (props) => {
     };
 
     return (
-        <Modal closeModal={closeEntModal}>
-            <h2 className={styles.entSpan}>Вход</h2>
-
-            <form className={styles.form}>
-
-                <div className={styles.emCont}>
-                    <img src={email} alt="e" className={styles.emSvg}/>
-                    <input type='email' className={styles.input} onChange={onChangeEm} placeholder='E-mail'/>
-                </div>
-
-                <div className={styles.lockCont}>
-                    <img src={lock} alt="lock" className={styles.lockSvg}/>
-                    <input type="password" className={styles.input} onChange={onChangePass} placeholder='Password'/>
-                </div>
-
-                {/*<button type='submit' className={styles.btn}>*/}
-                    <NavLink to="/tests" onClick={post}>Войти</NavLink>
-                {/*</button>*/}
-            </form>
-        </Modal>
+      <Modal closeModal={closeEntModal}>
+          <h2 className={styles.entSpan}>Вход</h2>
+          <form className={styles.form}>
+              <div className={styles.emCont}>
+                  <img src={email}
+                       alt="e"
+                       className={styles.emSvg}
+                  />
+                  <input type='email'
+                         className={styles.input}
+                         onChange={onChangeEm}
+                         placeholder='E-mail'
+                  />
+              </div>
+              <div className={styles.lockCont}>
+                  <img src={lock}
+                       alt="lock"
+                       className={styles.lockSvg}
+                  />
+                  <input type="password"
+                         className={styles.input}
+                         onChange={onChangePass}
+                         placeholder='Password'
+                  />
+              </div>
+              <NavLink to="/tests" onClick={post}>Войти</NavLink>
+          </form>
+      </Modal>
     );
 };
 

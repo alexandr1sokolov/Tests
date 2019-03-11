@@ -9,7 +9,7 @@ import MessageBox from "../MessageBox/MessageBox";
 
 import {setTestIsReady, unsetTestIsReady} from '../../redux/actions/testIsReadyActions';
 import {dataResult} from '../../redux/actions/actionDataResults';
-import {checkUser, getUserAuthHeader, getUserId} from '../../helpers/userValidation';
+import {getUserAuthHeader, getUserId} from '../../helpers/userValidation';
 import {addCurrentAnswers} from "../../redux/actions/currentAnswerActions";
 import {setSelectedTest, unSelectedTest} from "../../redux/actions/selectedTestAction";
 import styles from './Test.css';
@@ -23,15 +23,6 @@ import {isLogin} from "../../redux/actions/isLogin";
 class Test extends Component {
 
     componentDidMount() {
-        console.log("TEST did mount");
-        localStorage.getItem('token') !== null && checkUser()
-          .then(authResult => authResult === 200 && this.props.isLoginFunc() && true)
-          .then(data => data === true && axios.get(`/users/${getUserId()}`, getUserAuthHeader())
-            .then(data => this.props.dataResultFunc(data.data.results)))
-          .catch(err => console.log(err));
-
-        this.props.loadModulesDataAsync();
-        this.props.loadAllTestsDataAsync();
         this.selectTest()
 
     };
@@ -72,7 +63,6 @@ class Test extends Component {
         };
 
         this.props.setTestIsReadyFunc();
-        // dataResult(persRes);
         console.log(this.persRes);
         this.saveUserTestResultToServer(this.persRes)
     };
@@ -85,7 +75,6 @@ class Test extends Component {
     };
 
     selectTest = () => {
-        console.log("select test func");
         const selectedTest = this.props.allTests.find(el => el._id === this.props.match.url.split("/")[2]);
 
         const selectedTestObj = Object.keys(selectedTest).length ? {...selectedTest} : {};
@@ -94,10 +83,6 @@ class Test extends Component {
     };
 
     render() {
-        console.log("render test");
-        // console.log("location", this.props.location);
-        // console.log("history", this.props.history);
-        console.log("selected tests check",this.props.selectedTest);
         return (
           <div>
               <div className={styles.test__wrapper}>

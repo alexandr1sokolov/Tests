@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink} from 'react-router-dom';
-// import PropTypes from 'prop-types';
+
 import {unsetTestIsReady} from '../../redux/actions/testIsReadyActions';
 import {addCurrentAnswers} from '../../redux/actions/currentAnswerActions';
 import {setSelectedTest} from '../../redux/actions/selectedTestAction';
+
 import styles from './Result.css';
 
 function Result(props) {
@@ -19,7 +20,6 @@ function Result(props) {
     const testResult = props.currentResult.filter(el => el === true).length;
     return (
         <div className={styles.result__container}>
-            {/*<span onClick={offTestIsReady} className={styles.result__x}>x</span>*/}
             <div className={styles.result__content}>
                 <h2 className={styles.result__header}>Результат:</h2>
                 <ul className={styles.result__list}>
@@ -53,8 +53,5 @@ function MDTP(dispatch) {
         },
     }
 }
-
-// Result.propTypes = {};
-// Result.defaultProps = {};
 
 export default connect (MSTP, MDTP)(Result);

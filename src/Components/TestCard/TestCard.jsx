@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import PropTypes from 'prop-types';
 import {addCurrentResult} from '../../redux/actions/currentResultActions';
 import {addCurrentAnswers} from '../../redux/actions/currentAnswerActions';
 import styles from './TestCard.css';
@@ -10,7 +9,7 @@ let checkedInd = [];
 
 const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, correctResult, addCurrentResult}) => {
 
-console.log("test card");
+
 
     const addCurrentAnswersFunc = (e) => {
         addCurrentAnswers(e.target.value, e.target.dataset.index);
@@ -108,10 +107,6 @@ console.log("test card");
             );
     }
 };
-
-    // TestCard.propTypes = {};
-    // TestCard.defaultProps = {};
-
 
     function MSTP(state) {
         return {

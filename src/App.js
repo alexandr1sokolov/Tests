@@ -22,7 +22,6 @@ import {showRegistration} from './redux/actions/registrationAction';
 import {isLogin} from './redux/actions/isLogin';
 import {getUserAuthHeader, getUserId, checkUser} from './helpers/userValidation';
 import {dataResult} from './redux/actions/actionDataResults';
-import {LocationPathnameSave,LocationPathnameClear} from './redux/actions/locationPathnameAction'
 
 import styles from './App.css';
 
@@ -30,7 +29,6 @@ import styles from './App.css';
 class App extends Component {
 
     componentDidMount() {
-        console.log("did mount");
         localStorage.getItem('token') !== null && checkUser()
           .then(authResult => authResult === 200 && this.props.isLoginFunc() && true)
           .then(data => data === true && axios.get(`/users/${getUserId()}`, getUserAuthHeader())
@@ -39,18 +37,12 @@ class App extends Component {
 
         this.props.loadModulesDataAsync();
         this.props.loadAllTestsDataAsync();
-        this.props.location.pathname !== "/" && this.props.location.pathname !== "/tests" && this.props.locationPathnameSaveFunc(this.props.location.pathname);
     };
 
     render() {
-        console.log("location",this.props.location);
-        console.log("match", this.props.match);
-        console.log("history",this.props.history);
-        // debugger;
             return (
                 <div className={styles.App}>
                     <Header/>
-                    {/*{this.props.savedLocationPathname && this.props.isLogin &&  <Route render={() => ( <Redirect to={this.props.savedLocationPathname}/> )}/>}*/}
                       <Switch>
                         <Route exact path="/" render={() => ( this.props.isLogin ? <Redirect to="/tests"/> : <Main/> )}/>
                         <Route exact path="/" component={Main} />
@@ -58,7 +50,6 @@ class App extends Component {
                         <ProtectedRoute exact path="/tests/:id" component={Test} />
                         <Route path="*" component={NotFound}/>
                       </Switch>
-                    {/*{this.props.savedLocationPathname && <Redirect to={this.props.savedLocationPathname}/>}*/}
                     {this.props.enter && <Enter/>}
                     {this.props.registration && <Registration/>}
                     {this.props.messageText && <MessageBox/>}
@@ -93,7 +84,6 @@ function MDTP(dispatch) {
             return true
         },
         dataResultFunc:(data) => dispatch(dataResult(data)),
-        locationPathnameSaveFunc: (pathname) => dispatch(LocationPathnameSave(pathname))
     }
 }
 
