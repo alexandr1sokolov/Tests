@@ -11,6 +11,7 @@ const Tests = ({modules, tests, loadSelectedTest, match}) => {
     const selectTest = function(e) {
         const selectedTest = tests.find(el => el._id === e.target.dataset.testid);
         const selectedTestObj = Object.keys(selectedTest).length ? {...selectedTest} : {};
+        console.log(selectedTestObj);
         loadSelectedTest(selectedTestObj);
     };
 

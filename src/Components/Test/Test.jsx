@@ -22,25 +22,22 @@ import {isLogin} from "../../redux/actions/isLogin";
 
 class Test extends Component {
 
-    componentDidMount() {
-        this.selectTest()
-
-    };
-
-    componentDidUpdate() {
-        console.log(" TEST did Update");
-        const testIsSelected = Object.keys(this.props.selectedTest).length > 0;
-        if (testIsSelected) {
-            let correctAnswerData = this.props.selectedTest.questions.map(el => el.rightAnswer);
-            this.props.addCurrentCorrectResult(correctAnswerData)
-        }
-    };
+    // componentDidMount() {
+    //     this.selectTest()
+    // };
+    //
+    // componentDidUpdate() {
+    //     const testIsSelected = Object.keys(this.props.selectedTest).length > 0;
+    //     if (testIsSelected) {
+    //         let correctAnswerData = this.props.selectedTest.questions.map(el => el.rightAnswer);
+    //         this.props.addCurrentCorrectResult(correctAnswerData)
+    //     }
+    // };
 
     saveUserTestResultToServer = (persRes) => {
         const dataResults = this.props.dataResults;
         axios.put(`/users/${getUserId()}`, {results: [...dataResults.filter(el => el.testid !== this.persRes.testid), this.persRes]}, getUserAuthHeader())
           .then(user => this.props.dataResult(user.data.results))
-          // .then(user => console.log(user))
           .catch(err => console.log(err) )
     };
 
@@ -94,14 +91,13 @@ class Test extends Component {
                       <div className={styles.test__content}>
                           {this.props.testIsReady && <Result/>}
                           <div className={styles.test__cards}>
-                              {console.log(this.props.selectedTest)}
                               {this.props.selectedTest.questions.map((q, index) =>
                                 {
                                     return (
                                       <TestCard
                                         clas={this.props.testIsReady ?
-                                          (this.props.currentResult[index]? 2 : 3):
-                                          (1)
+                                          (this.props.currentResult[index]? "correct" : "wrong"):
+                                          ("default")
                                         }
                                         testname={this.props.selectedTest.testname}
                                         index={index}

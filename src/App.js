@@ -39,6 +39,14 @@ class App extends Component {
         this.props.loadAllTestsDataAsync();
     };
 
+  componentDidUpdate() {
+    const testIsSelected = Object.keys(this.props.selectedTest).length > 0;
+    if (testIsSelected) {
+      let correctAnswerData = this.props.selectedTest.questions.map(el => el.rightAnswer);
+      this.props.addCurrentCorrectResult(correctAnswerData)
+    }
+  };
+
     render() {
             return (
                 <div className={styles.App}>
@@ -68,7 +76,8 @@ function MSTP(state) {
         messageText: state.messageText,
         router: state.router,
         isLogin: state.isLogin,
-        savedLocationPathname: state.locationPathname
+        savedLocationPathname: state.locationPathname,
+      selectedTest: state.selectedTest,
     }
 }
 

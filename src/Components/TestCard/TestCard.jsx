@@ -18,40 +18,11 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
         (e.target.value === correctResult[e.target.dataset.index]) ? data = true : data = false;
         addCurrentResult(data, e.target.dataset.index);
 
-        checkedInd[+e.target.dataset.index] = +e.target.dataset.chind;
+        checkedInd[+e.target.dataset.index] = +e.target.dataset.checked_index;
     };
 
     switch (clas) {
-        default:
-            return (
-                <div className={styles.testcard}>
-                    <ol start={+index + 1}>
-                        <li className={styles.testcard__question}>{question}</li>
-                    </ol>
-
-                    <form method='post' onChange={(addCurrentAnswersFunc)}>
-                        {answers.map((answ, i) =>
-                            <label
-                                className={styles.testcard__answer}
-                                id={`${answ}${i}`}
-                                key={`${testname}${i}`}
-                            >
-                                <input
-                                    type="radio"
-                                    name="answer"
-                                    id={`${answ}${i}`}
-                                    data-index={index}
-                                    className={styles.testcard__answers}
-                                    value={answ}
-                                    data-chind={i}
-                                />
-                                {answ}
-                            </label>
-                        )}
-                    </form>
-                </div>
-            );
-        case 2:
+        case "correct":
             return (
                 <div className={`${styles.testcard} ${styles.testcardCor}`}>
                     <p className={styles.testcard__question}>{+index + 1}. {question}</p>
@@ -78,7 +49,7 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                     </form>
                 </div>
             );
-        case 3:
+        case "wrong":
             return (
                 <div className={`${styles.testcard} ${styles.testcardInc}`}>
                     <p className={styles.testcard__question}>{+index + 1}. {question}</p>
@@ -105,6 +76,36 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                     </form>
                 </div>
             );
+      default:
+        return (
+          <div className={styles.testcard}>
+            <ol start={+index + 1}>
+              <li className={styles.testcard__question}>{question}</li>
+            </ol>
+
+            <form method='post' onChange={(addCurrentAnswersFunc)}>
+              {answers.map((answ, i) =>
+                <label
+                  className={styles.testcard__answer}
+                  id={`${answ}${i}`}
+                  key={`${testname}${i}`}
+                >
+                  <input
+                    type="radio"
+                    name="answer"
+                    id={`${answ}${i}`}
+                    data-index={index}
+                    className={styles.testcard__answers}
+                    value={answ}
+                    data-checked_index={i}
+                    readOnly
+                  />
+                  {answ}
+                </label>
+              )}
+            </form>
+          </div>
+        );
     }
 };
 
