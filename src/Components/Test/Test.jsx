@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
@@ -11,7 +11,7 @@ import {setTestIsReady, unsetTestIsReady} from '../../redux/actions/testIsReadyA
 import {dataResult} from '../../redux/actions/actionDataResults';
 import {getUserAuthHeader, getUserId} from '../../helpers/userValidation';
 import {addCurrentAnswers} from "../../redux/actions/currentAnswerActions";
-import {setSelectedTest, unSelectedTest} from "../../redux/actions/selectedTestAction";
+import {unSelectedTest} from "../../redux/actions/selectedTestAction";
 import styles from './Test.css';
 import {clearMessageText, setMessageText} from "../../redux/actions/messageTextActions";
 import {addCurrentCorrectResult} from "../../redux/actions/currentCorrectResultActions";
@@ -20,108 +20,84 @@ import {fetchAllTestsDataAsync} from "../../redux/actions/testsAction";
 import {isLogin} from "../../redux/actions/isLogin";
 
 
-class Test extends Component {
+const Test = ({selectedTest, unSelectedTest, testIsReady, setTestIsReadyFunc, unsetTestIsReadyFunc, currentAnswer, currentResult, dataResult, usersRateLength, dataResults, messageText, setMessageTextFunc, clearMessageTextFunc}) => {
 
-    // componentDidMount() {
-    //     this.selectTest()
-    // };
-    //
-    // componentDidUpdate() {
-    //     const testIsSelected = Object.keys(this.props.selectedTest).length > 0;
-    //     if (testIsSelected) {
-    //         let correctAnswerData = this.props.selectedTest.questions.map(el => el.rightAnswer);
-    //         this.props.addCurrentCorrectResult(correctAnswerData)
-    //     }
-    // };
+    let persRes = {};
 
-    saveUserTestResultToServer = (persRes) => {
-        const dataResults = this.props.dataResults;
-        axios.put(`/users/${getUserId()}`, {results: [...dataResults.filter(el => el.testid !== this.persRes.testid), this.persRes]}, getUserAuthHeader())
-          .then(user => this.props.dataResult(user.data.results))
+    const saveUserTestResultToServer = (persRes) => {
+        axios.put(`/users/${getUserId()}`, {results: [...dataResults.filter(el => el.testid !== persRes.testid), persRes]}, getUserAuthHeader())
+          .then(user => dataResult(user.data.results))
           .catch(err => console.log(err) )
     };
 
-    offTestIsReady = () => {
-        this.props.unsetTestIsReadyFunc();
-        this.props.currentAnswer.map((el, i) => addCurrentAnswers(undefined, i));
-        this.props.unSelectedTest();
+    const offTestIsReady = () => {
+        unsetTestIsReadyFunc();
+        currentAnswer.map((el, i) => addCurrentAnswers(undefined, i));
+        unSelectedTest();
     };
 
-    persRes = {};
-
-    onTestIsReady = () => {
-        const testResult = this.props.currentResult.filter(el => el === true).length;
-        this.persRes = {
-            testid: this.props.selectedTest._id,
-            title: this.props.selectedTest.testname,
+    const onTestIsReady = () => {
+        const testResult = currentResult.filter(el => el === true).length;
+        persRes = {
+            testid: selectedTest._id,
+            title: selectedTest.testname,
             totalQuest: 10,
             corAnswers: testResult,
             success: testResult /10  * 100 +'%',
         };
 
-        this.props.setTestIsReadyFunc();
-        console.log(this.persRes);
-        this.saveUserTestResultToServer(this.persRes)
+        setTestIsReadyFunc();
+        saveUserTestResultToServer(persRes);
+        clearMessageTextFunc();
     };
 
-    checkAnswers = () => {
-        const currentAnswer = this.props.currentAnswer;
+    const checkAnswers = () => {
         currentAnswer.includes(undefined) || currentAnswer.length !== 10
-          ? this.props.setMessageTextFunc('Вы не ответили на все вопросы!')
-          : this.onTestIsReady();
+          ? setMessageTextFunc('Вы не ответили на все вопросы!')
+          : onTestIsReady();
     };
 
-    selectTest = () => {
-        const selectedTest = this.props.allTests.find(el => el._id === this.props.match.url.split("/")[2]);
-
-        const selectedTestObj = Object.keys(selectedTest).length ? {...selectedTest} : {};
-        console.log('selectedTestObj', selectedTestObj);
-        this.props.loadSelectedTestFunc(selectedTestObj);
-    };
-
-    render() {
         return (
           <div>
               <div className={styles.test__wrapper}>
                   <div className={styles.test__container}>
                       <header>
-                          <h1 className={styles.test__module}>{this.props.selectedTest.module}</h1>
-                          <h2 className={styles.test__testname}>{this.props.selectedTest.testname}</h2>
+                          <h1 className={styles.test__module}>{selectedTest.module}</h1>
+                          <h2 className={styles.test__testname}>{selectedTest.testname}</h2>
                       </header>
                       <div className={styles.test__content}>
-                          {this.props.testIsReady && <Result/>}
+                          {testIsReady && <Result/>}
                           <div className={styles.test__cards}>
-                              {this.props.selectedTest.questions.map((q, index) =>
+                              {selectedTest.questions.map((q, index) =>
                                 {
                                     return (
                                       <TestCard
-                                        clas={this.props.testIsReady ?
-                                          (this.props.currentResult[index]? "correct" : "wrong"):
+                                        clas={testIsReady ?
+                                          (currentResult[index]? "correct" : "wrong"):
                                           ("default")
                                         }
-                                        testname={this.props.selectedTest.testname}
+                                        testname={selectedTest.testname}
                                         index={index}
                                         question={q.question}
                                         answers={q.answers}
-                                        key={`${this.props.selectedTest.testname}${index}`}
+                                        key={`${selectedTest.testname}${index}`}
                                       />)
                                 })
                               }
                           </div>
                       </div>
-                      {!this.props.testIsReady && (
+                      {!testIsReady && (
                         <div className={styles.test__buttons}>
-                            <NavLink to="/tests" className={styles.test__btn} onClick={this.offTestIsReady}>ОТМЕНА</NavLink>
-                            <button className={styles.test__btn} onClick={this.checkAnswers}>ГОТОВО</button>
+                            <NavLink to="/tests" className={styles.test__btn} onClick={offTestIsReady}>ОТМЕНА</NavLink>
+                            <button className={styles.test__btn} onClick={checkAnswers}>ГОТОВО</button>
                         </div>)
                       }
-                      {this.props.messageText && <MessageBox/>}
+                      {messageText && <MessageBox/>}
                   </div>
               </div>
           </div>
         )
-    }
-}
+};
 
 function MSTP(state) {
     return {
@@ -144,8 +120,6 @@ function MDTP(dispatch) {
             return true
         },
         dataResultFunc: (data)=> dispatch(dataResult(data)),
-        loadSelectedTestFunc: (selectedTestObj) => dispatch(setSelectedTest(selectedTestObj)),
-
         setTestIsReadyFunc: () => dispatch(setTestIsReady()),
         unsetTestIsReadyFunc: () => dispatch(unsetTestIsReady()),
         dataResult: (data) => dispatch(dataResult(data)),

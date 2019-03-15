@@ -5,11 +5,9 @@ import {addCurrentAnswers} from '../../redux/actions/currentAnswerActions';
 import styles from './TestCard.css';
 
 
-let checkedInd = [];
+const checkedInd = [];
 
 const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, correctResult, addCurrentResult}) => {
-
-
 
     const addCurrentAnswersFunc = (e) => {
         addCurrentAnswers(e.target.value, e.target.dataset.index);
@@ -40,8 +38,7 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                                     data-index={index}
                                     className={styles.testcard__answers}
                                     value={answ}
-                                    checked={checkedInd[index] === i}
-                                    readOnly
+                                    disabled
                                 />
                                 {answ}
                             </label>
@@ -67,8 +64,7 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                                     data-index={index}
                                     className={styles.testcard__answers}
                                     value={answ}
-                                    checked={(checkedInd[index] === i)}
-                                    readOnly
+                                    disabled
                                 />
                                 {answ}
                             </label>
