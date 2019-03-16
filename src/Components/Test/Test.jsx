@@ -20,9 +20,9 @@ import {fetchAllTestsDataAsync} from "../../redux/actions/testsAction";
 import {isLogin} from "../../redux/actions/isLogin";
 
 
-const Test = ({selectedTest, unSelectedTest, testIsReady, setTestIsReadyFunc, unsetTestIsReadyFunc, currentAnswer, currentResult, dataResult, usersRateLength, dataResults, messageText, setMessageTextFunc, clearMessageTextFunc}) => {
+const Test = ({selectedTest, unSelectedTestFunc, testIsReady, setTestIsReadyFunc, unsetTestIsReadyFunc, currentAnswer, currentResult, dataResult, usersRateLength, dataResults, messageText, setMessageTextFunc, clearMessageTextFunc}) => {
 
-    let persRes = {};
+    let personalResult = {};
 
     const saveUserTestResultToServer = (persRes) => {
         axios.put(`/users/${getUserId()}`, {results: [...dataResults.filter(el => el.testid !== persRes.testid), persRes]}, getUserAuthHeader())
@@ -30,15 +30,15 @@ const Test = ({selectedTest, unSelectedTest, testIsReady, setTestIsReadyFunc, un
           .catch(err => console.log(err) )
     };
 
-    const offTestIsReady = () => {
+    const clearTestProgress = () => {
         unsetTestIsReadyFunc();
         currentAnswer.map((el, i) => addCurrentAnswers(undefined, i));
-        unSelectedTest();
+        unSelectedTestFunc();
     };
 
     const onTestIsReady = () => {
         const testResult = currentResult.filter(el => el === true).length;
-        persRes = {
+        personalResult = {
             testid: selectedTest._id,
             title: selectedTest.testname,
             totalQuest: 10,
@@ -47,7 +47,7 @@ const Test = ({selectedTest, unSelectedTest, testIsReady, setTestIsReadyFunc, un
         };
 
         setTestIsReadyFunc();
-        saveUserTestResultToServer(persRes);
+        saveUserTestResultToServer(personalResult);
         clearMessageTextFunc();
     };
 
@@ -73,7 +73,7 @@ const Test = ({selectedTest, unSelectedTest, testIsReady, setTestIsReadyFunc, un
                                     return (
                                       <TestCard
                                         clas={testIsReady ?
-                                          (currentResult[index]? "correct" : "wrong"):
+                                          (currentResult[index] ? "correct" : "wrong"):
                                           ("default")
                                         }
                                         testname={selectedTest.testname}
@@ -88,7 +88,7 @@ const Test = ({selectedTest, unSelectedTest, testIsReady, setTestIsReadyFunc, un
                       </div>
                       {!testIsReady && (
                         <div className={styles.test__buttons}>
-                            <NavLink to="/tests" className={styles.test__btn} onClick={offTestIsReady}>ОТМЕНА</NavLink>
+                            <NavLink to="/tests" className={styles.test__btn} onClick={clearTestProgress}>ОТМЕНА</NavLink>
                             <button className={styles.test__btn} onClick={checkAnswers}>ГОТОВО</button>
                         </div>)
                       }
@@ -125,7 +125,7 @@ function MDTP(dispatch) {
         dataResult: (data) => dispatch(dataResult(data)),
         addCurrentAnswers: (data, index) => dispatch(addCurrentAnswers(data, index)),
         addCurrentCorrectResult: (data) => dispatch(addCurrentCorrectResult(data)),
-        unSelectedTest: ()=> dispatch(unSelectedTest()),
+        unSelectedTestFunc: ()=> dispatch(unSelectedTest()),
         setMessageTextFunc: (message) => dispatch(setMessageText(message)),
         clearMessageTextFunc: () => dispatch(clearMessageText()),
     }

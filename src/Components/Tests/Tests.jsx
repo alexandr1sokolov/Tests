@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {NavLink} from "react-router-dom";
 
 import {setSelectedTest} from '../../redux/actions/selectedTestAction';
 
 import styles from './Tests.css';
-import {NavLink} from "react-router-dom";
+
 
 const Tests = ({modules, tests, loadSelectedTest, match}) => {
 
