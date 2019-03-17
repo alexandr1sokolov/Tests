@@ -55,6 +55,7 @@ const Test = ({selectedTest, unSelectedTestFunc, testIsReady, setTestIsReadyFunc
         currentAnswer.includes(undefined) || currentAnswer.length !== 10
           ? setMessageTextFunc('Вы не ответили на все вопросы!')
           : onTestIsReady();
+        window.scrollTo(0,0)
     };
 
         return (

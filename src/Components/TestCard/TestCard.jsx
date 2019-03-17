@@ -38,6 +38,8 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                                     data-index={index}
                                     className={styles.testcard__answers}
                                     value={answ}
+                                    // defaultChecked={checkedInd[index] === i}
+                                    // checked={checkedInd[index] === i}
                                     disabled
                                 />
                                 {answ}
@@ -64,6 +66,8 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                                     data-index={index}
                                     className={styles.testcard__answers}
                                     value={answ}
+                                    // defaultChecked={checkedInd[index] === i}
+                                    // checked={checkedInd[index] === i}
                                     disabled
                                 />
                                 {answ}
@@ -94,7 +98,6 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                     className={styles.testcard__answers}
                     value={answ}
                     data-checked_index={i}
-                    readOnly
                   />
                   {answ}
                 </label>

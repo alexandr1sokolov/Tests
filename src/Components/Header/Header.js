@@ -40,7 +40,7 @@ const Header = (props) => {
                     { props.location.pathname.includes("tests/") && <NavLink to="/tests"
                              className={styles.test}
                              onClick={clearTestProgress}
-                    >Tests</NavLink>}
+                    >Вернуться к меню</NavLink>}
                 </div>
                 <ul className={styles['header__menu-nav-links']}>
                     <li className={styles.header__item}>

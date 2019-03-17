@@ -23,7 +23,7 @@
 }
 
 .robotoOrange {
-    color: #ff6d3f;
+    color: #3f51b5;
     padding: 0.25rem;
 }
 .flex {
@@ -88,7 +88,7 @@ table {
 }
 @media (min-width: 1024px){
 .resultText {
-    padding: 2.18rem 0 2.18rem 2.18rem;
+    /*padding: 2.18rem 0 2.18rem 2.18rem;*/
 }
 .robotoOrange {
      padding: 1.25rem;

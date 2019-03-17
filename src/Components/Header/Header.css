@@ -34,7 +34,7 @@ Header {
     text-transform: uppercase;
     text-decoration: none;
     vertical-align: center;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 900;
     color: #e2f10e;
 }
@@ -85,7 +85,7 @@ Header {
 }
 
 .test {
-    font-size: 2rem;
+    font-size: 1rem;
     /*font-weight: 600;*/
     outline: none;
     border: none;

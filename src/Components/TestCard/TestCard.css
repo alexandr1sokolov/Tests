@@ -12,6 +12,10 @@
     margin-bottom: 1rem;
 }
 
+input {
+    margin-right: 0.5rem;
+}
+
 .testcard:last-child {
     margin-bottom: 0;
 }
@@ -35,6 +39,8 @@
     display: block;
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 1rem;
+    margin-right: 0.5rem;
+    /*margin-left:0.5rem;*/
     line-height: 1.6rem;
     color: #000;
     cursor: pointer;
