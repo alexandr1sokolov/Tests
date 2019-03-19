@@ -52,6 +52,7 @@
     background-color: #FC5830;
     border-radius: 5px;
     cursor: pointer;
+    text-align: center;
 }
 
 @media (min-width: 1024px) {
