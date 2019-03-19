@@ -27,7 +27,7 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                     <form method='post' onChange={(addCurrentAnswersFunc)}>
                         {answers.map((answ, i) =>
                             <label
-                                className={styles.testcard__answer}
+                                className={`${styles.testcard__answer} ${checkedInd[index] === i && styles.marked__answer_correct}`}
                                 id={`${answ}${i}`}
                                 key={`${testname}${i}`}
                             >
@@ -38,8 +38,6 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                                     data-index={index}
                                     className={styles.testcard__answers}
                                     value={answ}
-                                    // defaultChecked={checkedInd[index] === i}
-                                    // checked={checkedInd[index] === i}
                                     disabled
                                 />
                                 {answ}
@@ -55,7 +53,7 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                     <form method='post' onChange={(addCurrentAnswersFunc)}>
                         {answers.map((answ, i) =>
                             <label
-                                className={styles.testcard__answer}
+                                className={`${styles.testcard__answer} ${checkedInd[index] === i && styles.marked__answer_wrong}`}
                                 id={`${answ}${i}`}
                                 key={`${testname}${i}`}
                             >
@@ -66,8 +64,6 @@ const TestCard = ({testname, index, question, answers, clas, addCurrentAnswers, 
                                     data-index={index}
                                     className={styles.testcard__answers}
                                     value={answ}
-                                    // defaultChecked={checkedInd[index] === i}
-                                    // checked={checkedInd[index] === i}
                                     disabled
                                 />
                                 {answ}

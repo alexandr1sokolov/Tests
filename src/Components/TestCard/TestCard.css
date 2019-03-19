@@ -46,6 +46,17 @@ input {
     cursor: pointer;
 }
 
+.marked__answer_wrong {
+    background-color: rgb(255, 0, 0);
+    border-radius: 4px;
+
+}
+
+.marked__answer_correct {
+    background-color: rgb(0, 128, 0);
+    border-radius: 4px;
+}
+
 
 @media (min-width: 768px) {
     .testcard {

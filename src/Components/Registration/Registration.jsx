@@ -68,7 +68,8 @@ const Registration = (props) => {
 
             axios.post('/users', result)
                 .then(result => result.status === 201
-                    ? props.setMessageTextFunc(`Пользователь ${result.data.email} успешно создан. Теперь вы можете войти в систему.`)
+                    ? props.setMessageTextFunc(`Пользователь ${result.data.email} успешно создан.
+                     Теперь вы можете осуществить вход в систему.`)
                     : null)
         .catch(err => {console.log(err); props.setMessageTextFunc('Такой пользователь уже существует!')})
         }
