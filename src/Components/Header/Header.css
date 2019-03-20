@@ -36,7 +36,8 @@ Header {
     vertical-align: center;
     font-size: 1rem;
     font-weight: 900;
-    color: #e2f10e;
+    text-align: center;
+    margin-top:1rem;
 }
 
 .header__logo {
@@ -86,7 +87,6 @@ Header {
 
 .test {
     font-size: 1rem;
-    /*font-weight: 600;*/
     outline: none;
     border: none;
     background-color: #3f51b5;

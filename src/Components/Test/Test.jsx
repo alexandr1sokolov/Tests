@@ -12,12 +12,13 @@ import {dataResult} from '../../redux/actions/actionDataResults';
 import {getUserAuthHeader, getUserId} from '../../helpers/userValidation';
 import {addCurrentAnswers} from "../../redux/actions/currentAnswerActions";
 import {unSelectedTest} from "../../redux/actions/selectedTestAction";
-import styles from './Test.css';
 import {clearMessageText, setMessageText} from "../../redux/actions/messageTextActions";
 import {addCurrentCorrectResult} from "../../redux/actions/currentCorrectResultActions";
 import {fetchModulesDataAsync} from "../../redux/actions/modulesAction";
 import {fetchAllTestsDataAsync} from "../../redux/actions/testsAction";
-import {isLogin} from "../../redux/actions/isLogin";
+
+
+import styles from './Test.css';
 
 
 const Test = ({selectedTest, unSelectedTestFunc, testIsReady, setTestIsReadyFunc, unsetTestIsReadyFunc, currentAnswer, currentResult, dataResult, usersRateLength, dataResults, messageText, setMessageTextFunc, clearMessageTextFunc}) => {
@@ -116,10 +117,6 @@ function MDTP(dispatch) {
     return {
         loadModulesDataAsync: () => dispatch(fetchModulesDataAsync()),
         loadAllTestsDataAsync: () => dispatch(fetchAllTestsDataAsync()),
-        isLoginFunc: () => {
-            dispatch(isLogin());
-            return true
-        },
         dataResultFunc: (data)=> dispatch(dataResult(data)),
         setTestIsReadyFunc: () => dispatch(setTestIsReady()),
         unsetTestIsReadyFunc: () => dispatch(unsetTestIsReady()),

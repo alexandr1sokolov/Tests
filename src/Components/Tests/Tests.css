@@ -25,16 +25,15 @@
 .section {
     width: 100%;
     margin: auto;
-    /* background-color: #fff; */
     padding: 1rem;
 }
 
-.title {
-    color: #ff5722;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 2rem
-}
+/*.title {*/
+    /*color: #ff5722;*/
+    /*text-align: center;*/
+    /*margin-bottom: 1rem;*/
+    /*font-size: 2rem*/
+/*}*/
 
 .sub__title {
     text-align: justify;
@@ -84,6 +83,14 @@
     background-color: #f0f1f1;
     position: absolute;
     text-align: center;
+    transition: 500ms;
+
+}
+
+.main__span:hover {
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
 }
 
 .mod_1 {

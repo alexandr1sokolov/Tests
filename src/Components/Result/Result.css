@@ -49,10 +49,17 @@
     padding: 0.4rem 0.8rem;
     display: block;
     margin: auto;
-    background-color: #FC5830;
+    background-color: #4356B3;
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    transition: 500ms;
+}
+
+.result__btn:hover{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
 }
 
 @media (min-width: 1024px) {

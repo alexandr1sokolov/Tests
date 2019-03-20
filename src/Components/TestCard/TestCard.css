@@ -3,9 +3,9 @@
     min-width: 13.5rem;
     background-color: #fff;
     padding: 1rem;
-    -webkit-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.26);
-    -moz-box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.26);
-    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.26);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -44,6 +44,7 @@ input {
     line-height: 1.6rem;
     color: #000;
     cursor: pointer;
+
 }
 
 .marked__answer_wrong {

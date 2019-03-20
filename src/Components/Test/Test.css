@@ -68,6 +68,12 @@ body {
     text-decoration: none;
 }
 
+.test__btn:hover{
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.39);
+}
+
 .test__notfound {
     display: inline-block;
     max-width: 18px;
