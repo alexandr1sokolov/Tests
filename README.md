@@ -1,4 +1,4 @@
-In order to run this application clone it, install packages, run backend via "node server.js" in one terninal, in second type in "npm start".
+In order to run this application clone it, install packages, run back-end via "node server.js" in one terninal, in second type in "npm start".
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
