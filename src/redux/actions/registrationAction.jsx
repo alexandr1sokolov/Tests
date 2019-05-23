@@ -4,3 +4,5 @@ export const showRegistration = () => ({
 export const hideRegistration = () => ({
     type: 'REGISTRATION_HIDE',
 });
+
+

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import dataResults from './reducerDataResults';
 
 import registration from './registrationReducers';
+import successfulRegistration from './successfulRegistrationReducers'
 import enter from './enterReducers';
 import emailChange from './emailChangeReducers';
 import passChange from './passChangeReducers';
@@ -29,6 +30,7 @@ import messageText from './messageTextReducers';
     selectedTest,
     dataResults,
     registration,
+    successfulRegistration,
     enter,
     emailChange,
     passChange,

@@ -12,17 +12,17 @@ import {agreementOn, agreementOff} from '../../redux/actions/agreementAction';
 import {emailChangeClear} from '../../redux/actions/emailChangeAction';
 import {passChangeClear} from '../../redux/actions/passChangeAction';
 import {setMessageText} from '../../redux/actions/messageTextActions';
+import {successfulRegistration} from '../../redux/actions/registrationSuccessfulActions'
 
 import email from './mail.svg';
 import lock from './locked.svg';
 import styles from './Registration.css';
 
+
 const Registration = (props) => {
 
     const modalCloseStateClear = () => {
         props.hideRegistration();
-        props.emailChangeClearFunc();
-        props.passChangeClearFunc();
     };
     
     const onChangeEm = (e) => {
@@ -68,12 +68,13 @@ const Registration = (props) => {
 
             axios.post('/users', result)
                 .then(result => result.status === 201
-                    ? props.setMessageTextFunc(`Пользователь ${result.data.email} успешно создан.
-                     Теперь вы можете осуществить вход в систему.`)
+                    ? props.successfulRegistrationFunc()
                     : null)
+
         .catch(err => {console.log(err); props.setMessageTextFunc('Такой пользователь уже существует!')})
         }
     };
+
 
     const submit = (e) => {
         e.preventDefault();
@@ -122,7 +123,9 @@ const Registration = (props) => {
                     }
                 </form>
             </Modal>
+
           }
+
       </div>
     )
 };
@@ -133,7 +136,8 @@ function MSTP (state) {
         passChange: state.passChange,
         checkBoxStatus: state.checkBoxStatus,
         showAgreement: state.showAgreement,
-        messageText: state.messageText
+        messageText: state.messageText,
+        successfulRegistration: state.successfulRegistration
     }
 }
 
@@ -168,7 +172,10 @@ function MDTP (dispatch) {
         },
         setMessageTextFunc: function(message) {
             dispatch(setMessageText(message))
-        }
+        },
+        successfulRegistrationFunc: ()=>dispatch(successfulRegistration()),
+
+
     }
 }
 
