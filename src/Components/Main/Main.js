@@ -2,13 +2,11 @@ import React from 'react';
 import axios from "axios";
 
 import styles from './Main.css';
-// import Modal from "../ModalChild/ModalChild";
 import { Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {isLogin} from '../../redux/actions/isLogin';
 import {emailChangeClear, emailChangeHandler} from "../../redux/actions/emailChangeAction";
 import {passChangeClear, passChangeHandler} from "../../redux/actions/passChangeAction";
-import {setMessageText} from "../../redux/actions/messageTextActions";
 import {successfulRegistration, successfulRegistrationClear} from "../../redux/actions/registrationSuccessfulActions";
 
 

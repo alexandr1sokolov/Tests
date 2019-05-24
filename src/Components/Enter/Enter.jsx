@@ -61,6 +61,14 @@ const Enter = (props) => {
 
     };
 
+    const onKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            event.stopPropagation();
+            post();
+        }
+    };
+
     return (
       <Modal closeModal={closeEntModal}>
           <h2 className={styles.entSpan}>Вход</h2>
@@ -85,6 +93,7 @@ const Enter = (props) => {
                          className={styles.input}
                          onChange={onChangePass}
                          placeholder='Password'
+                         onKeyDown={onKeyDown}
                   />
               </div>
               <NavLink to="/tests" onClick={post}>Войти</NavLink>
