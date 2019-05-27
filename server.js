@@ -20,7 +20,6 @@ const testRoutes = require("./server/routes/testRoutes");
 const moduleRoutes = require("./server/routes/moduleRoutes");
 const resultsRoutes = require("./server/routes/resultsRoutes");
 
-app.use(express.static(path.join(__dirname, "build")));
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
