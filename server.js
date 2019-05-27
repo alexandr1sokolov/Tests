@@ -34,12 +34,14 @@ app.use(
   })
 );
 
-require("./config/passport-config");
+require("./server/config/passport-config.js");
 app.use(passport.initialize({ userProperty: "payload" }));
 app.use(passport.session());
 
 app.use(cors({ origin: "*" }));
 
+app.use("/", express.static("build"));
+app.use("/tests", express.static("build"));
 app.use("/api/users", userRoutes);
 app.use("/api/modules", moduleRoutes);
 app.use("/api/tests", testRoutes);
@@ -49,7 +51,6 @@ app.use((err, req, res) => {
   console.log(err.stack);
   res.status(500).json({ err: "500" });
 });
-app.use("*", express.static("build"));
 
 mongoose
   .connect(DB, { useNewUrlParser: true })
