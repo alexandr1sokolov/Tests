@@ -1,12 +1,12 @@
-export default function emailChange (state='', action) {
-    switch(action.type) {
-        
-        case 'EMAIL_CHANGE':
-            return action.data;
+export default function emailChange(state = "", action) {
+  switch (action.type) {
+    case "EMAIL_CHANGE":
+      return action.data;
 
-            case 'EMAIL_CLEAR':
-            return action.data;
+    case "EMAIL_CLEAR":
+      return action.data;
 
-        default: return state
-    }
+    default:
+      return state;
+  }
 }

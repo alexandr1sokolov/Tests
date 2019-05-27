@@ -8,13 +8,10 @@ export function fetchAllTestsData(data) {
 }
 
 function fetchAllTests() {
-  return (
-    axios
-      .get("https://student-tests.goit.co.ua/api/tests")
-      .then(result => result.status === 200 && result.data)
-      // .then(data => {console.log(data); return data})
-      .catch(err => console.log(err))
-  );
+  return axios
+    .get("https://student-tests.goit.co.ua/api/tests")
+    .then(result => result.status === 200 && result.data)
+    .catch(err => console.log(err));
 }
 
 export const fetchAllTestsDataAsync = () => dispatch => {

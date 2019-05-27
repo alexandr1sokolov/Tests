@@ -1,7 +1,7 @@
 export const showEnter = () => ({
-    type: 'ENT'
+  type: "ENT"
 });
 
 export const closeModal = () => ({
-    type: 'CLOSE'
+  type: "CLOSE"
 });

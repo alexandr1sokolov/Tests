@@ -1,14 +1,13 @@
+export default function isLogin(state = false, action) {
+  switch (action.type) {
+    case "SIGN_IN":
+      return true;
 
-export default function isLogin (state = false, action) {
-    switch (action.type){
-        case 'SIGN_IN':
-            return true;
+    case "SIGN_OUT":
+      localStorage.removeItem("token");
+      return false;
 
-        case 'SIGN_OUT':
-            localStorage.removeItem('token');
-            return false;
-
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 }

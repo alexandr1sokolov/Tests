@@ -1,7 +1,7 @@
 export const successfulRegistration = () => ({
-  type: 'SUCCESSFUL_REGISTRATION',
+  type: "SUCCESSFUL_REGISTRATION"
 });
 
 export const successfulRegistrationClear = () => ({
-  type: 'CLEAR_SUCCESSFUL_REGISTRATION',
+  type: "CLEAR_SUCCESSFUL_REGISTRATION"
 });

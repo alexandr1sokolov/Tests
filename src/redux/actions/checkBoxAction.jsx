@@ -1,7 +1,7 @@
 export const checkBoxOn = () => ({
-    type: 'CHECKBOX_ON',
+  type: "CHECKBOX_ON"
 });
 
 export const checkBoxOff = () => ({
-    type: 'CHECKBOX_OFF'
+  type: "CHECKBOX_OFF"
 });

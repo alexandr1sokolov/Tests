@@ -1,11 +1,11 @@
 export function setTestIsReady() {
-    return {
-        type:'ON'
-    }
+  return {
+    type: "ON"
+  };
 }
 
 export function unsetTestIsReady() {
-    return {
-        type:'OFF'
-    }
+  return {
+    type: "OFF"
+  };
 }

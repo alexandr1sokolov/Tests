@@ -14,7 +14,7 @@ function parseJWT() {
 export function checkUser() {
   let auth = parseJWT();
   const AuthStr = "Bearer ".concat(TOKEN());
-  // console.log(AuthStr);
+
   return (
     TOKEN() !== null &&
     axios
@@ -25,14 +25,6 @@ export function checkUser() {
       .catch(err => console.log(err))
   );
 }
-
-// export function validateUser() {
-//     let auth = parseJWT();
-//     // debugger
-//     return !auth ?
-//         false :
-//         checkUser(auth.id, TOKEN)
-// }
 
 export function getUserAuthHeader() {
   const AuthStr = "Bearer ".concat(TOKEN());

@@ -1,13 +1,12 @@
-export default function checkBoxStatus (state = false, action) {
-    switch(action.type) {
+export default function checkBoxStatus(state = false, action) {
+  switch (action.type) {
+    case "CHECKBOX_ON":
+      return true;
 
-        case 'CHECKBOX_ON':
-            return true;
+    case "CHECKBOX_OFF":
+      return false;
 
-        case 'CHECKBOX_OFF':
-            return false;
-
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 }

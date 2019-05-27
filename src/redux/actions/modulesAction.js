@@ -8,13 +8,10 @@ export function fetchModulesData(data) {
 }
 
 function fetchModules() {
-  return (
-    axios
-      .get("https://student-tests.goit.co.ua/api/modules")
-      .then(result => (result.status === 200 ? result.data : null))
-      // .then(data => {console.log(data); return data})
-      .catch(err => console.log(err))
-  );
+  return axios
+    .get("https://student-tests.goit.co.ua/api/modules")
+    .then(result => (result.status === 200 ? result.data : null))
+    .catch(err => console.log(err));
 }
 
 export const fetchModulesDataAsync = () => dispatch => {
