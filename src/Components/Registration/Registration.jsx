@@ -42,8 +42,8 @@ const Registration = props => {
     }
   };
 
-  const disactiveCheckAndShowAgr = () => {
-    props.showAgr();
+  const uncheckAndHideAgr = () => {
+    props.closeAgr();
     props.checkBoxOffFunc();
   };
 
@@ -88,7 +88,7 @@ const Registration = props => {
     <div>
       {props.showAgreement ? (
         <Modal closeModal={closeRegModal}>
-          <span className={styles.back} onClick={disactiveCheckAndShowAgr}>
+          <span className={styles.back} onClick={uncheckAndHideAgr}>
             &#8249;
           </span>
           <h2 className={styles.regSpan}>Пользовательское соглашение</h2>
